@@ -26,10 +26,18 @@ func stripTrailingDigits(s string, digits int) string {
 			return s[:i]
 		}
 		i++
-		if i+digits >= len(s) {
-			return s
+		if i+digits < len(s) {
+			return s[:i+digits]
 		}
-		return s[:i+digits]
+		for i+digits > len(s) {
+			s = s + "0"
+		}
+	} else {
+		s = s + "."
+		i = len(s)
+		for i+digits > len(s) {
+			s = s + "0"
+		}
 	}
 	return s
 }
